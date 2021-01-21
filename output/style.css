@@ -1,0 +1,39 @@
+.navbar {
+   height: 80px;
+   background-color: rgb(67, 67, 70);
+   color: rgb(223, 222, 226);
+}
+
+.card {
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 3px 3px 3px 3px  rgb(112, 111, 111);
+}
+
+.card-title {
+    color: rgb(223, 222, 226);
+
+}
+
+#manager {
+    background-color:  rgb(79, 79, 82);
+}
+
+#engineer {
+    background-color:  rgb(79, 79, 82);
+
+}
+
+#intern {
+    background-color:  rgb(79, 79, 82);
+
+}
+
+@media only screen and (max-width: 812px) {
+
+    .card {
+        margin-top: 15px;
+        width: 100%;
+    }
+    
+}
