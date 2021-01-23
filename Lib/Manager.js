@@ -12,10 +12,10 @@ class Manager extends Employee {
         return "Manager";
    }
  
-   getofficeNumber() {
+   getOfficeNumber() {
      return this.officeNumber;
    }
        
 }
 
-module.exports = Intern;
+module.exports = Manager;

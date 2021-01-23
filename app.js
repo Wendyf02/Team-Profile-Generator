@@ -1,5 +1,5 @@
 
-const inquirer = require("./inquirer");
+const inquirer = require("inquirer");
 const jest = require("jest");
 const fs = require("fs");
 
@@ -9,8 +9,6 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
 
-const OUTPUT_DIR = path.resolve(_dirname, "output");
-const outputPath = path.join(OUTPUT_DIR , "team.html");
 
 const render = require("./lib/Rendererhtml");
 
@@ -18,13 +16,13 @@ const teamArray =[];
 
 //Manager promt//
 
-function promptUser(answer) {
-    return inquirer.prompt([
+function promptUser(answer) { 
+    inquirer.prompt([
 
       {   
-          type: " list",
+          type: "list",
           name: "role",
-          meassage: "what is your role?",
+          message: "what is your role?",
           choices: ["Engineer", "Intern", "Manager" ]
       },
 
@@ -45,17 +43,20 @@ function promptUser(answer) {
                 },
                 {
                     name: "email",
-                    type: "input",
-                    message: "What is your email?"
+                    type: "input", 
+                    message:"What is your email?"
+                },
+                {
+                    name: "Id",
+                    type: "input", 
+                    message:"What is your Id?"
                 }
-
             ]).then(function (engineerRes) { 
-                var newEngineer = new Engineer(engineerRes.name, engineerRes.email, uniqueId, EngineerRes.github)
-                uniqueId = uniqueId + 1; 
+                var newEngineer = new Engineer(engineerRes.name, engineerRes.email, engineerRes.Id, engineerRes.github)
                 console.log(newEngineer);
                 // run promptUser
                 teamArray.push(newEngineer);
-                addUser();
+                promptUser();
             });
 
         } else if (res.role === "Intern") {
@@ -63,7 +64,7 @@ function promptUser(answer) {
 
                 {
                     name: "name",
-                    message: "What is your name?",
+                    message:"What is your name?",
                     type: "input"
                 },
                 {
@@ -77,30 +78,42 @@ function promptUser(answer) {
                     message: "where did you graduate from college?"
                 }
 
-            ]).then(function (InternRes) { 
-                var newEngineer = new Intern(InternRes.name, internRes.email, uniqueId, InternRes.school)
-                uniqueId = uniqueId + 1; 
+            ]).then(function (internRes) { 
+                var newIntern = new Intern(internRes.name, internRes.email, internRes.Id, internRes.school)
                 console.log(newIntern);
                 // run promptUser
                 teamArray.push(newIntern);
-                addUser();
+                promptUser();
             });
 
+        } else if (res.role === "Manager") {
+            inquirer.prompt([
 
+           {
+               name: "name",
+               message:"What is your name?",
+               type: "input"
+           },
+           {
+               name: "email",
+               type: "input",
+               message: "What is your email?"
+           },
+           {
+               name: "office",
+               type: "input",
+               message: "what is your office number?"
+           }
 
+        ]).then(function (managerRes) { 
+           var newManager = new Manager(managerRes.name, managerRes.email, managerRes.Id, managerRes.office)
+           console.log(newManager);
+           // run promptUser
+           teamArray.push(newManager);
+           promptUser();
+       });
 
-
-
-
-
-
-
-        }
-
-
-
-
-
+    };
 
     })
 
@@ -110,94 +123,6 @@ function promptUser(answer) {
 
 
 
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-    
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-           ])
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      })
-
-
-
-
-}
+    promptUser();

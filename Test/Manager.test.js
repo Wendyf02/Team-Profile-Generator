@@ -3,7 +3,7 @@ const Employee = require("../lib/Employee");
 
 test("can get office number via constructor argument" , () => { 
     const testValue = "100";
-    const e = new Engineer("Foo", 1, "test@test.com" ,  testValue);
+    const e = new Manager("Foo", 1, "test@test.com" ,  testValue);
     expect(e.officeNumber).toBe(testValue);
 });
 
