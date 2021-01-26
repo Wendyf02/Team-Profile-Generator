@@ -10,7 +10,8 @@ const Intern = require("./lib/Intern");
 
 
 
-const render = require("./lib/Rendererhtml");
+const render = require("./lib/Renderhtml");
+console.log(render)
 
 const teamArray =[];
 
@@ -23,10 +24,10 @@ function promptUser(answer) {
           type: "list",
           name: "role",
           message: "what is your role?",
-          choices: ["Engineer", "Intern", "Manager" ]
+          choices: ["Manager", "Engineer", "Intern",  "done adding team member" ]
       },
 
-    ]).then(function  (res) {
+    ]).then(function (res) {
         //should use switch case instead bof if else starting here
         console.log(res)
         if (res.role === "Engineer") {
@@ -35,6 +36,12 @@ function promptUser(answer) {
                     name: "name",
                     message: "What is your name?",
                     type: "input"
+                },
+
+                {
+                    name: "Id",
+                    type: "input", 
+                    message:"What is your Id?"
                 },
                 {
                     name: "github",
@@ -45,14 +52,10 @@ function promptUser(answer) {
                     name: "email",
                     type: "input", 
                     message:"What is your email?"
-                },
-                {
-                    name: "Id",
-                    type: "input", 
-                    message:"What is your Id?"
                 }
+                
             ]).then(function (engineerRes) { 
-                var newEngineer = new Engineer(engineerRes.name, engineerRes.email, engineerRes.Id, engineerRes.github)
+                var newEngineer = new Engineer(engineerRes.name,  engineerRes.Id, engineerRes.email, engineerRes.github)
                 console.log(newEngineer);
                 // run promptUser
                 teamArray.push(newEngineer);
@@ -68,6 +71,11 @@ function promptUser(answer) {
                     type: "input"
                 },
                 {
+                    name: "Id",
+                    type: "input", 
+                    message:"What is your Id?"
+                },
+                {
                     name: "email",
                     type: "input",
                     message: "What is your email?"
@@ -79,7 +87,7 @@ function promptUser(answer) {
                 }
 
             ]).then(function (internRes) { 
-                var newIntern = new Intern(internRes.name, internRes.email, internRes.Id, internRes.school)
+                var newIntern = new Intern(internRes.name, internRes.Id, internRes.email, internRes.school)
                 console.log(newIntern);
                 // run promptUser
                 teamArray.push(newIntern);
@@ -95,34 +103,41 @@ function promptUser(answer) {
                type: "input"
            },
            {
+            name: "Id",
+            type: "input", 
+            message:"What is your Id?"
+           },
+           {
                name: "email",
                type: "input",
                message: "What is your email?"
            },
            {
-               name: "office",
+               name: "officenumber",
                type: "input",
-               message: "what is your office number?"
+               message: "what is your officenumber?"
            }
 
         ]).then(function (managerRes) { 
-           var newManager = new Manager(managerRes.name, managerRes.email, managerRes.Id, managerRes.office)
+           var newManager = new Manager(managerRes.name,  managerRes.Id, managerRes.email, managerRes.officenumber)
            console.log(newManager);
            // run promptUser
            teamArray.push(newManager);
            promptUser();
        });
 
-    };
+    }else {
+        render(teamArray)
+    }
+
+
+
 
     })
 
-
-
-
-
-
-
 };
 
-    promptUser();
+       
+
+
+promptUser();
