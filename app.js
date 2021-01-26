@@ -1,4 +1,4 @@
-
+// remember to install node modules (npm init -y & inquirer (npm install))
 const inquirer = require("inquirer");
 const jest = require("jest");
 const fs = require("fs");
