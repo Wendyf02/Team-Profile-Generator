@@ -1,9 +1,6 @@
 
 const fs = require("fs");
 
-
-
-
 function startHTML() {
 
 const html =  `<!DOCTYPE html>
