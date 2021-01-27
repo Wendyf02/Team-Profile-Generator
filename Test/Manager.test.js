@@ -1,21 +1,20 @@
+const { TestScheduler } = require("jest");
 const Manager = require("../lib/Manager");
-const Employee = require("../lib/Employee");
 
-test("can get office number via constructor argument" , () => { 
-    const testValue = "100";
-    const e = new Manager("Foo", 1, "test@test.com" ,  testValue);
-    expect(e.officeNumber).toBe(testValue);
-});
-
-test("getRole() should return \"Manager\"",() =>  { 
-    const testValue = "Manager";
-    const e = new Manager("Foo", 1, "test@test.com",100);
-    expect(e.getRole()).toBe(testValue);
+test("add Manager office number", () => {
+    const manager = new Manager("Sol", 1, "s@email.com", 10);
+    expect(manager.officeNumber).toBe(10);
 
 });
 
-test("can get office number via getOffice()" , () => { 
-    const testValue = "100";
-    const e = new Manager("Foo", 1, "test@test.com" ,  testValue);
-    expect(e.getOfficeNumber()).toBe(testValue);
+test("getofficeNumber", () => {
+    const manager = new Manager("Sol", 1, "s@email.com", 10);
+    expect(manager.getOfficeNumber()).toBe(10);
+
+});
+
+test("getRole", () => {
+    const manager = new Manager("Sol", 1, "s@email.com", 10);
+    expect(manager.getRole()).toBe("Manager");
+
 });
